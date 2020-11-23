@@ -75,7 +75,10 @@ public class WechatPay2Credentials implements Credentials {
     if (uri.getQuery() != null) {
       canonicalUrl += "?" + uri.getRawQuery();
     }
-
+    //硬编码 nginx 配置路径
+    if(canonicalUrl.contains("/api_mch_weixin_qq_com")){
+      canonicalUrl=canonicalUrl.replace("/api_mch_weixin_qq_com","");
+    }
     String body = "";
     // PATCH,POST,PUT
     if (request.getOriginal() instanceof WechatPayUploadHttpPost) {
